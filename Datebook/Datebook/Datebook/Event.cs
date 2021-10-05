@@ -8,23 +8,28 @@ namespace Datebook
 {
     public class Event
     {
-        private Guid eventId;
-        private DateTime eventDate;
-        private TimeSpan eventDuration;
-        private string eventDescription;
-        private string eventPlace;
-        private DateTime entryCreationDate;
+        public Guid EventId { get; private set; }
+        public DateTime EventCreationDate { get; private set; }
+        public DateTime EventDate { get; set; }
+        public TimeSpan EventDuration { get; set; }
+        public string EventDescription { get; set; }
+        public string EventPlace { get; set; }
 
 
-        public Event(DateTime date, TimeSpan duration, string description, string place)
+        public Event(DateTime eventDate, TimeSpan eventDuration, string eventDescription, string eventPlace)
         {
-            eventId = Guid.NewGuid();
-            this.eventDate = date;
-            this.eventDuration = duration;
-            this.eventDescription = description;
-            this.eventPlace = place;
-            entryCreationDate = DateTime.Now;
+            EventId = Guid.NewGuid();
+            this.EventDate = eventDate;
+            this.EventDuration = eventDuration;
+            this.EventDescription = eventDescription;
+            this.EventPlace = eventPlace;
+            EventCreationDate = DateTime.Now;
             
+        }
+
+        public void WriteFullEvent()
+        {
+            Console.WriteLine($"{EventDate} {EventDuration} {EventDescription} {EventPlace} {EventCreationDate}");
         }
     }
 }
